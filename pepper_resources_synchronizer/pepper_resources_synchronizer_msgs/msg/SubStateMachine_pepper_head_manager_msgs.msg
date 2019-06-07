@@ -1,0 +1,2 @@
+resource_synchronizer_msgs/SubStateMachineHeader header
+pepper_head_manager_msgs/StateMachine state_machine

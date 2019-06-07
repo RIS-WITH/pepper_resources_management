@@ -1,0 +1,9 @@
+<launch>
+    <node name="pepper_base_manager" pkg="pepper_base_manager" type="pepper_base_manager"/>
+    <arg name='TESTDURATION' value='120' />
+    <test test-name="tests_pepper_base_manager" pkg="pepper_base_manager" type="tests_pepper_base_manager"
+        time-limit="$(arg TESTDURATION)"
+        retry="10"
+        args="--gtest_shuffle"
+    />
+</launch>

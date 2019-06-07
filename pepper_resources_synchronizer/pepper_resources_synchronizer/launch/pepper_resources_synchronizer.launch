@@ -1,0 +1,10 @@
+<launch>
+	<arg name="plugins" default="
+	resource_management::EventsPluginStr
+	"/>
+	<node name="pepper_head_manager" pkg="pepper_head_manager" type="pepper_head_manager_synchronised" output="screen" args="$(arg plugins)"/>
+	<node name="pepper_arm_manager_left" pkg="pepper_arm_manager" type="pepper_arm_manager_synchronised" output="screen" args="$(arg plugins)"/>
+	<node name="pepper_arm_manager_right" pkg="pepper_arm_manager" type="pepper_arm_manager_synchronised" output="screen" args="$(arg plugins)"/>
+	<node name="pepper_base_manager" pkg="pepper_base_manager" type="pepper_base_manager_synchronised" output="screen" args="$(arg plugins)"/>
+	<node name="pepper_resources_synchronizer" pkg="pepper_resources_synchronizer" type="synchronizer" output="screen" />
+</launch>

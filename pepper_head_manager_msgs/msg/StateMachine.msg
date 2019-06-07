@@ -1,0 +1,2 @@
+StateMachineStatePrioritizedJointTrajectory[] states_PrioritizedJointTrajectory
+StateMachineStatePrioritizedPoint[] states_PrioritizedPoint
