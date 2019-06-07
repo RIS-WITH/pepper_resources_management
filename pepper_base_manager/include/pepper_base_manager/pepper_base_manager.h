@@ -15,7 +15,7 @@ class PepperBaseManager : public resource_management::ResourceManager<pepper_bas
 {
 public:
     PepperBaseManager(const ros::NodeHandlePtr &nh, std::vector<std::string>& plugins, bool synchronized = false):
-        ResourceManager (std::move(nh),{"acting", "exploring"}, plugins, synchronized)
+        ResourceManager (std::move(nh),{"acting", "exploring", "navigating"}, plugins, synchronized)
     {
         // this in lambda is necessary for gcc <= 5.1
         resource_management::MessageWrapper<geometry_msgs::Twist>::registerPublishFunction([this](auto data, auto is_new){ this->publishPrioritizedTwistMsg(data, is_new); });
