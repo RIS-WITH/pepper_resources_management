@@ -8,6 +8,8 @@
 
 #include <thread>
 
+#define CMD_VEL_TOPIC "/cmd_vel"
+
 class PepperBaseManager : public resource_management::ResourceManager<pepper_base_manager_msgs::StateMachineRegister
       ,pepper_base_manager_msgs::StateMachineExtract
       ,pepper_base_manager_msgs::PrioritizedTwist
@@ -22,6 +24,8 @@ public:
 
         // Remove if your do not need artificial life
         _artificialLife = (std::make_shared<pepper_base_manager::ArtificialLife>(_artificialLifeBuffer));
+
+        _cmd_vel_pub = nh->advertise<geometry_msgs::Twist>(CMD_VEL_TOPIC, 1);
     }
 
 private:
@@ -31,4 +35,6 @@ private:
     pepper_base_manager_msgs::StateMachineRegister::Response generateResponseMsg(uint32_t id) override;
 
     void publishPrioritizedTwistMsg(geometry_msgs::Twist msg, bool is_new);
+
+    ros::Publisher _cmd_vel_pub;
 };

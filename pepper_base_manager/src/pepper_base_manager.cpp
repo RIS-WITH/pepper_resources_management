@@ -38,6 +38,6 @@ pepper_base_manager_msgs::StateMachineRegister::Response PepperBaseManager::gene
 
 void PepperBaseManager::publishPrioritizedTwistMsg(geometry_msgs::Twist msg, bool is_new)
 {
-  // Put you own publishing function here
+  _cmd_vel_pub.publish(msg);
 }
 
