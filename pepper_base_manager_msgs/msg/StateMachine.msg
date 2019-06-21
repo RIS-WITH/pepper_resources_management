@@ -1,1 +1,2 @@
 StateMachineStatePrioritizedTwist[] states_PrioritizedTwist
+StateMachineStatePrioritizedAngle[] states_PrioritizedAngle

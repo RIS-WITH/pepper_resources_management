@@ -11,7 +11,7 @@ geometry_msgs
 ## Generate messages in the 'msg' folder
 add_message_files(
 FILES
-StateMachineStatePrioritizedTwist.msg PrioritizedTwist.msg
+StateMachineStatePrioritizedTwist.msg StateMachineStatePrioritizedAngle.msg PrioritizedTwist.msg PrioritizedAngle.msg
 StateMachine.msg)
 
 ## Generate services in the 'srv' folder
