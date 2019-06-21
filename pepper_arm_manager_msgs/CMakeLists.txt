@@ -6,12 +6,13 @@ roscpp
 message_generation
 resource_management_msgs
 naoqi_bridge_msgs
+geometry_msgs
 )
 
 ## Generate messages in the 'msg' folder
 add_message_files(
 FILES
-StateMachineStatePrioritizedJointTrajectory.msg PrioritizedJointTrajectory.msg
+StateMachineStatePrioritizedJointTrajectory.msg StateMachineStatePrioritizedPoint.msg PrioritizedJointTrajectory.msg PrioritizedPoint.msg
 StateMachine.msg)
 
 ## Generate services in the 'srv' folder
