@@ -31,6 +31,12 @@ PepperResourcesSynchronizer::PepperResourcesSynchronizer(ros::NodeHandlePtr nh) 
   _manager.registerHolder(&_holder_pepper_base_manager);
   _manager.registerSatusCallback([this](auto status){ this->publishStatus(status); });
 
+  resource_synchronizer::StateMachineSynchroHolder::registerResource("pepper_head_manager");
+  resource_synchronizer::StateMachineSynchroHolder::registerResource("pepper_arm_manager_left");
+  resource_synchronizer::StateMachineSynchroHolder::registerResource("pepper_arm_manager_right");
+  resource_synchronizer::StateMachineSynchroHolder::registerResource("pepper_base_manager");
+
+
   ROS_INFO("pepper_resources_synchronizer ready.");
 }
 

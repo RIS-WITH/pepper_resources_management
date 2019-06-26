@@ -7,6 +7,8 @@ pepper_base_manager_msgs
 resource_management
 geometry_msgs
 pluginlib
+nao_interaction_msgs
+tf2
 )
 
 catkin_package(

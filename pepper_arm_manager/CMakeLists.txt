@@ -1,13 +1,17 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(pepper_arm_manager)
-add_compile_options(-std=c++14 -Wall -pthread)
+add_compile_options(-std=gnu++14 -Wall -pthread)
 find_package(catkin REQUIRED
 roscpp
 pepper_arm_manager_msgs
 resource_management
-naoqi_bridge_msgs
+nao_interaction_msgs
 pluginlib
+geometry_msgs
+tf2
+tf2_ros
 )
+
 
 catkin_package(
 #INCLUDE_DIRS include

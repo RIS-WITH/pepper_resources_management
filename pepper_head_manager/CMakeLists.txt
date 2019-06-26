@@ -5,8 +5,11 @@ find_package(catkin REQUIRED
 roscpp
 pepper_head_manager_msgs
 resource_management
-geometry_msgs naoqi_bridge_msgs
+geometry_msgs
+nao_interaction_msgs
 pluginlib
+tf2
+tf2_ros
 )
 
 catkin_package(

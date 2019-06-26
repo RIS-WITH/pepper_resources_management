@@ -1,5 +1,6 @@
 #include "pepper_head_manager/ArtificialLife.h"
 #include "resource_management/message_storage/MessageWrapper.h"
+#include <geometry_msgs/PointStamped.h>
 
 namespace pepper_head_manager {
 
@@ -22,6 +23,15 @@ ArtificialLife::ArtificialLife(std::shared_ptr<resource_management::ReactiveBuff
   // 3 - Insert your wrapped data into the rtificial life buffer:
   // _buffer->setData(wrapped_PrioritizedJointTrajectory_data);
   // _buffer->setData(wrapped_PrioritizedPoint_data);
+
+  geometry_msgs::PointStamped data;
+  data.header.frame_id = "base_link";
+  data.point.x = 2.0;
+  data.point.y = 0.0;
+  data.point.z = 1.2;
+  auto wrapped_PrioritizedPoint_data = std::make_shared<resource_management::MessageWrapper<geometry_msgs::PointStamped>>(data);
+  wrapped_PrioritizedPoint_data->setPriority(resource_management::low);
+  _buffer->setData(wrapped_PrioritizedPoint_data);
 }
 
 void ArtificialLife::init()
@@ -46,6 +56,14 @@ void ArtificialLife::init()
   // 3 - Insert your wrapped data into the rtificial life buffer:
   // _buffer->setData(wrapped_PrioritizedJointTrajectory_data);
   // _buffer->setData(wrapped_PrioritizedPoint_data);
+  geometry_msgs::PointStamped data;
+  data.header.frame_id = "base_link";
+  data.point.x = 2.0;
+  data.point.y = 0.0;
+  data.point.z = 1.2;
+  auto wrapped_PrioritizedPoint_data = std::make_shared<resource_management::MessageWrapper<geometry_msgs::PointStamped>>(data);
+  wrapped_PrioritizedPoint_data->setPriority(resource_management::low);
+  _buffer->setData(wrapped_PrioritizedPoint_data);
 }
 
 void ArtificialLife::inLoop()

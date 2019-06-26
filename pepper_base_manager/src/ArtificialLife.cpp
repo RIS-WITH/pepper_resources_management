@@ -1,5 +1,6 @@
 #include "pepper_base_manager/ArtificialLife.h"
 #include "resource_management/message_storage/MessageWrapper.h"
+#include <geometry_msgs/Twist.h>
 
 namespace pepper_base_manager {
 
@@ -19,6 +20,12 @@ ArtificialLife::ArtificialLife(std::shared_ptr<resource_management::ReactiveBuff
   //
   // 3 - Insert your wrapped data into the rtificial life buffer:
   // _buffer->setData(wrapped_PrioritizedTwist_data);
+  geometry_msgs::Twist data;
+  auto wrapped_PrioritizedTwist_data = std::make_shared<resource_management::MessageWrapper<geometry_msgs::Twist>>(data);
+  wrapped_PrioritizedTwist_data->setPriority(resource_management::low);
+  _buffer->setData(wrapped_PrioritizedTwist_data);
+
+
 }
 
 void ArtificialLife::init()
@@ -40,6 +47,10 @@ void ArtificialLife::init()
   //
   // 3 - Insert your wrapped data into the rtificial life buffer:
   // _buffer->setData(wrapped_PrioritizedTwist_data);
+  geometry_msgs::Twist data;
+  auto wrapped_PrioritizedTwist_data = std::make_shared<resource_management::MessageWrapper<geometry_msgs::Twist>>(data);
+  wrapped_PrioritizedTwist_data->setPriority(resource_management::low);
+  _buffer->setData(wrapped_PrioritizedTwist_data);
 }
 
 void ArtificialLife::inLoop()
