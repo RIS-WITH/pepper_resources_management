@@ -31,7 +31,7 @@ public:
     point_with_priority.priority.value = resource_management_msgs::MessagePriority::VOID;
     if (frameToTrack != "")
     {
-      if (tfBuffer.canTransform(frameToTrack, "/base_link", ros::Time(0))) {
+      if (tfBuffer.canTransform(frameToTrack, "base_link", ros::Time(0))) {
         point_with_priority.priority.value =
             resource_management_msgs::MessagePriority::URGENT;
       }
