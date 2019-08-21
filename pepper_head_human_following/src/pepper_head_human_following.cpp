@@ -49,7 +49,7 @@ protected:
 };
 
 int main(int argc, char** argv) {
-  ros::init(argc, argv, "pepper_head_pepper_follower");
+  ros::init(argc, argv, "human_point_publisher");
   ros::NodeHandle nh("~");
 
   HumanFollower hf(nh);
