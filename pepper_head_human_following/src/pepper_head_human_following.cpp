@@ -9,14 +9,15 @@ class HumanFollower {
 public:
   HumanFollower(ros::NodeHandle& nh): tfListener(tfBuffer){
 
-    subscriber_ = nh.subscribe<std_msgs::String>("human_to_look", 10, &HumanFollower::onNewHumanToTrack, this);
+    subscriber_ = nh.subscribe<const std_msgs::String&>("human_to_look", 10, &HumanFollower::onNewHumanToTrack, this);
     publisher_ = nh.advertise<pepper_head_manager_msgs::PrioritizedPoint>(
         "/pepper_head_manager/human_monitoring/pepper_head_manager_msgs1_PrioritizedPoint", 10);
-    t_ = nh.createTimer(ros::Duration(0.5), &HumanFollower::onTimer, this);
+    t_ = nh.createTimer(ros::Duration(0.3), &HumanFollower::onTimer, this);
+    ROS_INFO("Pepper head human follower started.");
 
   }
 
-  void onNewHumanToTrack(std_msgs::String human){
+  void onNewHumanToTrack(const std_msgs::String& human){
     frameToTrack = human.data;
   }
 
@@ -31,11 +32,37 @@ public:
     point_with_priority.priority.value = resource_management_msgs::MessagePriority::VOID;
     if (frameToTrack != "")
     {
-      if (tfBuffer.canTransform(frameToTrack, "base_link", ros::Time(0))) {
-        point_with_priority.priority.value =
-            resource_management_msgs::MessagePriority::URGENT;
+      if (tfBuffer.canTransform(frameToTrack, "map", ros::Time(0))) {
+        auto transform =
+            tfBuffer.lookupTransform("map", frameToTrack, ros::Time(0));
+        if (ros::Time::now() - transform.header.stamp <= ros::Duration(0.5)) {
+          point_with_priority.priority.value =
+              resource_management_msgs::MessagePriority::URGENT;
+
+          double d;
+          if (lastTransform.header.frame_id != "") {
+            d = hypot(hypot(transform.transform.translation.x -
+                                   lastTransform.transform.translation.x,
+                                   transform.transform.translation.y -
+                                   lastTransform.transform.translation.y),
+                             transform.transform.translation.z -
+                             lastTransform.transform.translation.z);
+          }
+          if (lastTransform.header.frame_id == "" || d >= 0.2){
+            lastTransform = transform;
+          }
+          point_with_priority.data.header.stamp = ros::Time::now();
+          point_with_priority.data.header.frame_id = "map";
+          point_with_priority.data.point.x = lastTransform.transform.translation.x;
+          point_with_priority.data.point.y = lastTransform.transform.translation.y;
+          point_with_priority.data.point.z = lastTransform.transform.translation.z;
+        }
       }
     }
+    if (point_with_priority.priority.value == resource_management_msgs::MessagePriority::VOID){
+      lastTransform = geometry_msgs::TransformStamped();
+    }
+
     publisher_.publish(point_with_priority);
   }
 
@@ -46,6 +73,7 @@ protected:
   ros::Publisher publisher_;
   ros::Subscriber subscriber_;
   ros::Timer t_;
+  geometry_msgs::TransformStamped lastTransform;
 };
 
 int main(int argc, char** argv) {
