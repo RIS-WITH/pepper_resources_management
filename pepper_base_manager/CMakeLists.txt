@@ -2,13 +2,13 @@ cmake_minimum_required(VERSION 2.8.3)
 project(pepper_base_manager)
 add_compile_options(-std=c++14 -Wall -pthread)
 find_package(catkin REQUIRED
-roscpp
-pepper_base_manager_msgs
-resource_management
-geometry_msgs
-pluginlib
-nao_interaction_msgs
-tf2
+    roscpp
+    pepper_base_manager_msgs
+    resource_management
+    geometry_msgs
+    pluginlib
+    nao_interaction_msgs
+    tf2
 )
 
 catkin_package(

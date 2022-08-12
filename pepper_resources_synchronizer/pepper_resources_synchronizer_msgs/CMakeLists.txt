@@ -2,28 +2,28 @@ cmake_minimum_required(VERSION 2.8.3)
 project(pepper_resources_synchronizer_msgs)
 
 find_package(catkin REQUIRED
-roscpp
-message_generation
-resource_management_msgs
-resource_synchronizer_msgs
-pepper_arm_manager_msgs
-pepper_base_manager_msgs
-pepper_head_manager_msgs
+  roscpp
+  message_generation
+  resource_management_msgs
+  resource_synchronizer_msgs
+  pepper_arm_manager_msgs
+  pepper_base_manager_msgs
+  pepper_head_manager_msgs
 )
 
 ## Generate messages in the 'msg' folder
 add_message_files(
 FILES
-SubStateMachine_pepper_head_manager_msgs.msg
-SubStateMachine_pepper_arm_manager_msgs.msg
-SubStateMachine_pepper_arm_manager_msgs.msg
-SubStateMachine_pepper_base_manager_msgs.msg
+  SubStateMachine_pepper_head_manager_msgs.msg
+  SubStateMachine_pepper_arm_manager_msgs.msg
+  SubStateMachine_pepper_arm_manager_msgs.msg
+  SubStateMachine_pepper_base_manager_msgs.msg
 )
    
 ## Generate services in the 'srv' folder
 add_service_files(
 FILES
-MetaStateMachineRegister.srv
+  MetaStateMachineRegister.srv
 )
    
 generate_messages(DEPENDENCIES resource_management_msgs resource_synchronizer_msgs pepper_arm_manager_msgs pepper_base_manager_msgs pepper_head_manager_msgs)

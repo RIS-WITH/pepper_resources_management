@@ -12,13 +12,18 @@ geometry_msgs
 ## Generate messages in the 'msg' folder
 add_message_files(
 FILES
-StateMachineStatePrioritizedJointTrajectory.msg StateMachineStatePrioritizedPoint.msg PrioritizedJointTrajectory.msg PrioritizedPoint.msg
-StateMachine.msg)
+  StateMachineStatePrioritizedJointTrajectory.msg
+  StateMachineStatePrioritizedPoint.msg
+  PrioritizedJointTrajectory.msg
+  PrioritizedPoint.msg
+  StateMachine.msg
+)
 
 ## Generate services in the 'srv' folder
 add_service_files(
 FILES
-StateMachineRegister.srv StateMachineExtract.srv
+  StateMachineRegister.srv
+  StateMachineExtract.srv
 )
 
 generate_messages(DEPENDENCIES resource_management_msgs naoqi_bridge_msgs)

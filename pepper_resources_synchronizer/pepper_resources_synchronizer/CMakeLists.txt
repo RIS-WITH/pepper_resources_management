@@ -4,12 +4,12 @@ project(pepper_resources_synchronizer)
 add_compile_options(-std=c++14 -Wall -Wextra -pthread)
 
 find_package(catkin REQUIRED
-roscpp
-resource_management
-resource_synchronizer
-resource_management_msgs
-resource_synchronizer_msgs
-pepper_resources_synchronizer_msgs
+  roscpp
+  resource_management
+  resource_synchronizer
+  resource_management_msgs
+  resource_synchronizer_msgs
+  pepper_resources_synchronizer_msgs
 )
 
 catkin_package(CATKIN_DEPENDS message_runtime pepper_resources_synchronizer_msgs)
