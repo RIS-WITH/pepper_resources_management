@@ -11,7 +11,7 @@ int main(int argc, char *argv[]){
     ros::init(argc,argv,"pepper_arm_manager_right");
   }else{
     throw std::runtime_error(
-        R"(pr2_arm_manager needs to be launched with either "left" or "right" as first command line argument.)");
+        R"(papper_arm_manager needs to be launched with either "left" or "right" as first command line argument.)");
   }
   ros::NodeHandlePtr nh(new ros::NodeHandle("~"));
 
